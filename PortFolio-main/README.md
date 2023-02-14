@@ -1,0 +1,2 @@
+# Myportfolio
+My Self Dontha Sumanth, Being a Software Engineer is my passion. Currently Pursuing BTech 3rd Year from CMR College Of Engineering And Technology.I am a passionate Competitive Programming and am highly interested in Algorithmic Problem Solving with a firm grasp in Data Structures and Algorithms. I love the combination of Creative and Logical Problem-Solving Skills. Currently Learning ReactJS and NodeJS
