@@ -32,7 +32,52 @@ mongoose.connect(process.env.MONGO_CONNECTION_STRING,{},function (err){
                     }
                 });
             }
+            else{
+                if(err)
+                {
+                    console.error(err);
+                }
+                else{
+                    console.log(res);
+                }
+            }
         });
+        // userlib.getuserByFilter({username:"BittuSumanth"},function(err,result){
+        //     if(err)
+        //     {
+        //         console.error(err);
+        //     }
+        //     else{
+        //         console.log(result);
+        //     }
+        // });
+        // userlib.createUser({username:"BittuSumanth",yearOfGraduation:2025},function(err,result){
+        //     if(err)
+        //     {
+        //         console.error(err);
+        //     }
+        //     else{
+        //         console.log(result);
+        //     }
+        // });
+        // userlib.updateUser(function(err,result){
+        //     if(err)
+        //     {
+        //         console.log(err);
+        //     }
+        //     else{
+        //         console.log(result);
+        //     }
+        // });
+        // userlib.deleteUser("Bittusumanth",function(err,result){
+        //     if(err)
+        //     {
+        //         console.error(err);
+        //     }
+        //     else{
+        //         console.log(result);
+        //     }
+        // });
         app.listen(3000,()=>{
             console.log("Server started at port no 3000");
         });
