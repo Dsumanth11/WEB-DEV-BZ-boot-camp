@@ -15,6 +15,9 @@ app.get('/',(request,response)=>{
 app.get('/resume',(request,response)=>{
     response.sendFile(__dirname+"/PortFolio-main/resume.html");
 });
+app.get('/weather',(request,response)=>{
+    response.sendFile("weather1.html",{root:__dirname});
+});
 mongoose.set('strictQuery',true);
 mongoose.connect(process.env.MONGO_CONNECTION_STRING,{},function (err){
     if(err)
