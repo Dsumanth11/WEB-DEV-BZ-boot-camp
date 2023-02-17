@@ -39,12 +39,15 @@ module.exports.createUser=async function(user,callback)
         callback(err,null);
     }
 }
-module.exports.updateUser= async function(username,data,callback)
+module.exports.updateUser= async function(callback)
 {
     try{
         var query={
-            username:username,
-        }
+            username:"BittuSumanth",
+        };
+        var data={
+            yearOfGraduation:2015,
+        };
         var result=await userModel.updateOne(query,data);
         callback(null,result);
     }
@@ -76,3 +79,4 @@ module.exports.deleteUser=async function(username,callback)
         callback(err,null);
     }
 }
+
