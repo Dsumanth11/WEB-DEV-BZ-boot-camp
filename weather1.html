@@ -29,23 +29,49 @@
 
         }
         .weather-card{
-            min-width: 200px;
-            max-width: 400px;
+            min-width: 350px;
+        }
+        #cityselect
+        {
+            width:40vw;
+            height:35px;
+            border-radius:10px;
+            padding:5px;
+            padding-left: 15px;
         }
     </style>
 </head>
 <body>
     <div id="inputbox" class="container main-container">
-    <h1 id="headingApp">Weather App</h1>
-    <div class="typewriter text-danger">
-        <h5>By Dontha Sumanth</h5>
-      </div>
-    <div class="input-group mb-3 mt-5">
-        <input id="searchbox" type="text" class="form-control form-control-lg" placeholder="Type a City Name">
-        <button class="btn btn-outline-success" type="button" id="button-addon2">
-            <i class="fas fa-search fa-lg fa-fw">
-            </i>
-        </button>
+        <h1 id="headingApp">Weather App</h1>
+        <div class="typewriter text-danger">
+            <h5>By Dontha Sumanth</h5>
+        </div>
+    <div class="input-group mb-3 mt-5 d-flex flex-column">
+        <div class="d-flex flex-row">
+            <input id="searchbox" type="text" class="form-control form-control-lg" placeholder="Type a City Name">
+            <button class="btn btn-outline-success" type="button" id="button-addon2">
+                <i class="fas fa-search fa-lg fa-fw">
+                </i>
+            </button>
+        </div>
+        <div class="mt-3 text-center">
+            <h6 class="text-warning">Or</h6>
+        </div>
+        <div class="mt-3 mb-3">
+            <select id="cityselect" name="cityselect">
+                <option value="">Select Popular City</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Jaipur">Jaipur</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Pune">Pune</option>
+                <option value="Visakhapatnam">Visakhapatnam</option>
+            </select>
+        </div>
     </div>
     <div class="spinner-border text-success mt-5 d-none" id="spinner_green"role="status">
         <span class="sr-only">Loading...</span>
@@ -112,7 +138,14 @@
                 getWeatherReport(searchbox.value)
             }
         })
-        
+        const selectbox=document.getElementById("cityselect");
+        selectbox.addEventListener('change',function(event){
+            const cityName=selectbox.value;
+            if(cityName!=="")
+            {
+                getWeatherReport(cityName);
+            }
+        });
         function getWeatherReport(city) {
             document.getElementById("spinner_green").classList.remove("d-none");
             document.getElementById("weatherCard").classList.add("d-none");
