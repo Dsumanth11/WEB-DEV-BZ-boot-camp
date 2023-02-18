@@ -8,7 +8,7 @@ const options={
 const express=require('express');
 const app=express();
 app.use(express.static("public",options));
-const port=process.env.PORT || 5010;
+const port=process.env.PORT || 3000;
 app.get('/',(request,response)=>{
     response.sendFile("index.html",{root:__dirname});
 });
@@ -85,8 +85,9 @@ mongoose.connect(process.env.MONGO_CONNECTION_STRING,{},function (err){
         //         console.log(result);
         //     }
         // });
-        app.listen(3000,()=>{
-            console.log("Server started at port no 3000");
+        app.listen(port,()=>{
+            console.log("Server running on http://localhost:"+port);
+			console.log(`Server running on http://localhost:${port}`);
         });
     }
 });
