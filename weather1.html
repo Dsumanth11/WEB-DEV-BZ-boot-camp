@@ -5,13 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-
-        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
 
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <title>Document</title>
     <style>
+        #headingApp{
+            color:white;
+        }
+        body{
+            margin-top:25px;
+            background-color: black;
+        }
         .main-container{
             display:flex;
             justify-content: center;
@@ -30,22 +36,28 @@
 </head>
 <body>
     <div id="inputbox" class="container main-container">
-    <h1>Weather App</h1>
+    <h1 id="headingApp">Weather App</h1>
+    <div class="typewriter text-danger">
+        <h5>By Dontha Sumanth</h5>
+      </div>
     <div class="input-group mb-3 mt-5">
         <input id="searchbox" type="text" class="form-control form-control-lg" placeholder="Type a City Name">
         <button class="btn btn-outline-success" type="button" id="button-addon2">
             <i class="fas fa-search fa-lg fa-fw">
             </i>
         </button>
-      </div>
-      <div class="card weather-card" >
+    </div>
+    <div class="spinner-border text-success mt-5 d-none" id="spinner_green"role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+      <div id="weatherCard" class="card weather-card d-none" >
 
         <div class="card-title text-center mt-3">
             <h4 id="city">Delhi</h4>
             <h6 id="date">Fri Feb 17 2023</h6>
         </div>
 
-        <img id="cardimage" src="clouds.jpg" class="card-img-top" alt="Weather Image">
+        <img id="cardimage" src="images/clouds.jpg" class="card-img-top" alt="Weather Image">
 
         <div class="card-body">
           <h6 id="temp" class="display-4 font-weight-bold text-center">13°C</h6>
@@ -102,17 +114,22 @@
         })
         
         function getWeatherReport(city) {
-
+            document.getElementById("spinner_green").classList.remove("d-none");
+            document.getElementById("weatherCard").classList.add("d-none");
             //  https://api.openweathermap.org/data/2.5/weather?q=cityName&appid=eb7a2d4a5a9b284fe54b7bb547238443&unit=metric
-            fetch(`${weatherApi.baseUrl}?q=${city}&appid=${weatherApi.key}&units=metric`)
-                .then(function (response) { return response.json() })
-                .then(function (response) {
-                    showWeatherReport(response);
-                })
-                .catch(function (err) {
-                    console.log(err)
-                })
-
+            setTimeout(()=>{
+                fetch(`${weatherApi.baseUrl}?q=${city}&appid=${weatherApi.key}&units=metric`)
+                    .then(function (response) { return response.json() })
+                    .then(function (response) {
+                        showWeatherReport(response);
+                    })
+                    .catch(function (err) {
+                        console.log(err)
+                    })
+                document.getElementById("searchbox").value="";
+                document.getElementById("spinner_green").classList.add("d-none");
+                document.getElementById("weatherCard").classList.remove("d-none");
+            },800);
         }
 
         function showWeatherReport(currentWeather)
@@ -128,8 +145,6 @@
             let pressure=document.getElementById("pressure");
             let visibility=document.getElementById("visibility");
             let windspeed=document.getElementById("windspeed");
-
-
 
             city.innerHTML=currentWeather.name;
             let todayDate=new Date().toDateString();
