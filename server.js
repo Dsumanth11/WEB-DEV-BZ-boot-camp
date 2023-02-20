@@ -18,6 +18,20 @@ app.get('/resume',(request,response)=>{
 app.get('/weather',(request,response)=>{
     response.sendFile("weather1.html",{root:__dirname});
 });
+
+app.get('/todolist',(request,response)=>{
+    response.sendFile("todolist.html",{root:__dirname});
+});
+
+// app.get("/api/todos",function(request,response){
+//     response.json({
+//         [
+//             {"name":"Dsumanth11","age":18},
+//             {"name":"Bittu","age":18},
+//             {"name":"Dontha","age":20},
+//         ]
+//     })
+// })
 mongoose.set('strictQuery',true);
 mongoose.connect(process.env.MONGO_CONNECTION_STRING,{},function (err){
     if(err)
