@@ -22,7 +22,7 @@ app.get('/weather',(request,response)=>{
 });
 
 ///---------------//
-app.get('/todo',(request,response)=>{
+app.get('/todolist',(request,response)=>{
     response.sendFile("todolist.html",{root:__dirname});
 });
 
